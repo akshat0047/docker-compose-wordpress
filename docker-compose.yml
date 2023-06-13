@@ -26,12 +26,14 @@ services:
     restart: always
     ports:
       - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: wp
       MYSQL_USER: wp
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: secret
-      SERVICE_TAGS: dev
+      SERVICE_TAGS: prd
       SERVICE_NAME: mysql
     networks:
       - wordpress
@@ -46,13 +48,15 @@ services:
     networks:
       - wordpress
 
-  wp:
-    build:
-      context: .
-      dockerfile: php.dockerfile
-    container_name: wp
-    entrypoint: ['wp', '--allow-root']
-    volumes:
-      - ./wordpress:/var/www/html:delegated
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: password 
     networks:
       - wordpress
