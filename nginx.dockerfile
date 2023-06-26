@@ -4,6 +4,7 @@ RUN apt-get update
 RUN apt-get install nano
 
 RUN mkdir -p /etc/ssl
+ADD ./nginx/certs/cloudfare.crt /etc/ssl
 
 ADD ./nginx/certs/site1-cert.pem /etc/ssl
 ADD ./nginx/certs/site1-key.pem /etc/ssl
