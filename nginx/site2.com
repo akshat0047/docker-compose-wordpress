@@ -11,6 +11,9 @@ server {
 
         ssl_certificate         /etc/ssl/site2-cert.pem;
         ssl_certificate_key     /etc/ssl/site2-key.pem;
+	ssl_client_certificate  /etc/ssl/cloudfare.crt;
+        ssl_verify_client on;
+
 	root /var/www/html/site1;
 
 	index index.php;
