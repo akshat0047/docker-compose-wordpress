@@ -1,10 +1,16 @@
 server {
-	listen 80;
-	listen [::]:80;
+    listen 80;
+    listen [::]:80;
+    server_name site1 www.site1;
+    return 302 https://$server_name$request_uri;
+}
 
-	# listen 443 ssl;
-	# listen [::]:443 ssl;
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
 
+        ssl_certificate         /etc/ssl/site1-cert.pem;
+        ssl_certificate_key     /etc/ssl/site1-key.pem;
 	root /var/www/html/site1;
 
 	index index.php;

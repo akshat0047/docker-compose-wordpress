@@ -10,6 +10,10 @@ A simplified yet refined Docker Compose workflow that sets up a LEMP network of 
 
 - Download the contents of wordpress in site1 and site2 folder directly with no further subfolder named `wordpress`, do the same for further wordpress websites by creating successive folders.
 
+- Setup wordpress files permissions from here
+
+- Setup nginx ssl certificates by adding your site to cloudfare (reference) and generating a origin server certificate following [this](https://www.digitalocean.com/community/tutorials/how-to-host-a-website-using-cloudflare-and-nginx-on-ubuntu-20-04)
+
 - Add the vhost configurations for your websites by renaming the file `site1.com` under nginx folder and also replacing the contents inside from site1.com to your `domain-name`
 
 - Update the nginx.dockerfile and replace site1.com with your domain name, please do the same for successive websites
